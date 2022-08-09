@@ -17,6 +17,9 @@ class MenuFragment: Fragment() {
 
     interface Callbacks {
         fun onAddJobSelected(jobId: UUID)
+        fun onMyJobsSelected()
+        fun onFindJobsSelected()
+        fun onUserDetailsSelected()
     }
     private var callbacks: Callbacks? = null
 
@@ -70,6 +73,22 @@ class MenuFragment: Fragment() {
             val job = Job()
             jobListViewModel.addJob(job)
             callbacks?.onAddJobSelected(job.id)
+        }
+
+        myJobsButton.setOnClickListener{
+            callbacks?.onMyJobsSelected()
+        }
+
+        findJobs.setOnClickListener{
+            callbacks?.onFindJobsSelected()
+        }
+
+        detailsImageButton.setOnClickListener {
+            callbacks?.onUserDetailsSelected()
+        }
+
+        detailsTextButton.setOnClickListener {
+            callbacks?.onUserDetailsSelected()
         }
     }
     override fun onStart(){

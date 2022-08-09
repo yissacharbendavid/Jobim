@@ -17,4 +17,6 @@
     <color name="job_color_six">#FFC107</color>
     <color name="job_color_seven">#00675D</color>
     <color name="halfTransparent">#6D000000</color>
+    <color name="gray">#E3E3E3</color>
+    <color name="dark_gray">#5E5E5E</color>
 </resources>

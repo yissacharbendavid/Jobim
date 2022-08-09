@@ -2,29 +2,27 @@ package il.co.hyperactive.myjobim
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.lifecycle.Observer
 import java.util.*
 
-private const val TAG = "JobListFragment"
-
-class JobListFragment: Fragment() {
-
+class MyJobsFragment: Fragment() {
     interface Callbacks {
         fun onJobSelected(jobId: UUID)
-        fun onListStart()
     }
 
     private var callbacks: Callbacks? = null
 
-    private lateinit var jobRecyclerView: RecyclerView
+    private lateinit var jobsRecyclerView: RecyclerView
+
     private var adapter: JobAdapter = JobAdapter(emptyList())
 
     private val jobListViewModel: JobListViewModel by lazy {
@@ -42,11 +40,10 @@ class JobListFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         container?.clearDisappearingChildren()
-        val view = inflater.inflate(R.layout.fragment_job_list,container,false)
-
-        jobRecyclerView = view.findViewById(R.id.job_recycler_view) as  RecyclerView
-        jobRecyclerView.layoutManager = LinearLayoutManager(context)
-        jobRecyclerView.adapter = adapter
+        val view = inflater.inflate(R.layout.fragment_my_jobs_list,container,false)
+        jobsRecyclerView = view.findViewById(R.id.my_jobs_recycler_view) as RecyclerView
+        jobsRecyclerView.layoutManager = LinearLayoutManager(context)
+        jobsRecyclerView.adapter = adapter
 
         return view
     }
@@ -57,15 +54,9 @@ class JobListFragment: Fragment() {
             viewLifecycleOwner,
             Observer { jobs ->
                 jobs?.let {
-                    Log.i(TAG, "Got crimes ${jobs.size}")
-                    updateUI(jobs)
+                    updateUI(jobs.filter { it.isFavorite })
                 }
             })
-    }
-
-    override fun onStart() {
-        super.onStart()
-        callbacks?.onListStart()
     }
 
     override fun onDetach() {
@@ -74,7 +65,7 @@ class JobListFragment: Fragment() {
     }
 
     private inner class JobHolder(view: View)
-        : RecyclerView.ViewHolder(view),View.OnClickListener{
+        : RecyclerView.ViewHolder(view), View.OnClickListener{
 
         private lateinit var job: Job
 
@@ -89,7 +80,6 @@ class JobListFragment: Fragment() {
         }
 
         override fun onClick(v: View) {
-            Log.d(TAG,"item pressed")
             callbacks?.onJobSelected(job.id)
         }
 
@@ -116,11 +106,11 @@ class JobListFragment: Fragment() {
         override fun onBindViewHolder(holder: JobHolder, position: Int) {
 
             val job = jobs[position]
-            holder.bind(job)
+                holder.bind(job)
         }
     }
     private fun updateUI(jobs: List<Job>) {
         adapter = JobAdapter(jobs)
-        jobRecyclerView.adapter = adapter
+        jobsRecyclerView.adapter = adapter
     }
 }

@@ -5,6 +5,7 @@
     <string name="send_email">שלח מייל</string>
     <string name="job_title">%1$s is looking for a %2$s</string>
     <string name="add_to_favorites">הוסף למועדפים</string>
+    <string name="remove_from_favorites">הסר מהמועדפים</string>
     <string name="more_from_employer">ג\'ובים נוספים למעסיק זה</string>
     <string name="share_button">שתף עם חברים</string>
     <string name="hide_job">הסתר</string>
@@ -47,6 +48,9 @@
     <string name="packing_worker">עובד/ת אריזה</string>
     <string name="cook">טבח/ית</string>
     <string name="user_name">יששכר בן דוד</string>
+    <string name="user_address">עפרה</string>
+    <string name="user_birth_year">1996</string>
+    <string name="user_mail">myMail@gmail.com</string>
     <string name="details">הפרטים שלי</string>
     <string name="notifications">התראות</string>
     <string name="my_jobs">הג\'ובים שלי</string>

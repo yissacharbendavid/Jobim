@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/user_image"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/empty_gray_circle"
+        android:src="@drawable/man_icon"
+        app:tint="@color/dark_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/user_name_container"
+        android:layout_width="0dp"
+        android:layout_height="110dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/user_image">
+
+        <ImageView
+            android:id="@+id/user_name_icon"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:background="@color/gray"
+            android:src="@drawable/man_icon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/dark_gray" />
+
+        <TextView
+            android:id="@+id/user_name_text"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@color/gray"
+            android:gravity="center|right"
+            android:text="@string/user_name"
+            android:textColor="@color/orange"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/user_name_icon"
+            app:layout_constraintTop_toBottomOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/user_address_container"
+        android:layout_width="0dp"
+        android:layout_height="110dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/user_name_container">
+
+        <ImageView
+            android:id="@+id/user_address_icon"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:background="@color/gray"
+            android:src="@drawable/location_icon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/dark_gray" />
+
+        <TextView
+            android:id="@+id/user_address_text"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@color/gray"
+            android:gravity="center|right"
+            android:text="@string/user_address"
+            android:textColor="@color/orange"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/user_address_icon"
+            app:layout_constraintTop_toBottomOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/user_birth_year_container"
+        android:layout_width="0dp"
+        android:layout_height="110dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/user_address_container">
+
+        <ImageView
+            android:id="@+id/user_birth_year_icon"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:background="@color/gray"
+            android:src="@drawable/calendar_icon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/dark_gray" />
+
+        <TextView
+            android:id="@+id/user_birth_year_text"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@color/gray"
+            android:gravity="center|right"
+            android:text="@string/user_birth_year"
+            android:textColor="@color/orange"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/user_birth_year_icon"
+            app:layout_constraintTop_toBottomOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/user_mail_container"
+        android:layout_width="0dp"
+        android:layout_height="110dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/user_birth_year_container">
+
+        <ImageView
+            android:id="@+id/user_mail_icon"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:background="@color/gray"
+            android:src="@drawable/mail_icon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/dark_gray" />
+
+        <TextView
+            android:id="@+id/user_mail_text"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@color/gray"
+            android:gravity="center|right"
+            android:text="@string/user_mail"
+            android:textColor="@color/orange"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/user_mail_icon"
+            app:layout_constraintTop_toBottomOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

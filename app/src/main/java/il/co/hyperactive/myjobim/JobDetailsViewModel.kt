@@ -24,8 +24,7 @@ class JobDetailsViewModel: ViewModel() {
 
     fun saveJob(job:Job) {
         jobRepository.updateJob(job)
-        Log.d(TAG,"phone: ${job.phoneNumber}")
-        Log.d(TAG, "mail: ${job.email}")    }
+    }
 
     fun deleteJob(jobId: UUID) {
         jobRepository.deleteJob(jobId)

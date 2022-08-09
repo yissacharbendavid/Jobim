@@ -10,11 +10,11 @@
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginStart="48dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/round_button"
         android:src="@drawable/message_icon"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/top_container" />
+        app:layout_constraintTop_toBottomOf="@+id/top_triangle" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -31,13 +31,12 @@
         android:id="@id/call_button"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_margin="16dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/round_button"
         android:src="@drawable/call_icon"
         app:layout_constraintEnd_toStartOf="@+id/send_email_button"
         app:layout_constraintStart_toEndOf="@+id/send_message_button"
-        app:layout_constraintTop_toBottomOf="@+id/top_container" />
+        app:layout_constraintTop_toBottomOf="@+id/top_triangle" />
 
     <TextView
         android:id="@+id/textView"
@@ -55,12 +54,12 @@
         android:id="@+id/send_email_button"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="48dp"
         android:background="@drawable/round_button"
         android:src="@drawable/mail_icon"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/top_container" />
+        app:layout_constraintTop_toBottomOf="@+id/top_triangle" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -83,7 +82,7 @@
         android:src="@drawable/employer_icon"
         app:layout_constraintEnd_toStartOf="@+id/hide_job"
         app:layout_constraintHorizontal_bias="0.21"
-        app:layout_constraintStart_toEndOf="@+id/add_to_favorites"
+        app:layout_constraintStart_toEndOf="@+id/add_to_favorites_button"
         app:layout_constraintTop_toBottomOf="@+id/location" />
 
     <TextView
@@ -95,7 +94,7 @@
         android:textColor="@color/orange"
         app:layout_constraintEnd_toStartOf="@+id/hide_job"
         app:layout_constraintHorizontal_bias="0.17"
-        app:layout_constraintStart_toEndOf="@+id/add_to_favorites"
+        app:layout_constraintStart_toEndOf="@+id/add_to_favorites_button"
         app:layout_constraintTop_toBottomOf="@+id/more_from_employer" />
 
     <ImageButton
@@ -108,7 +107,7 @@
         android:src="@drawable/share_icon"
         app:layout_constraintEnd_toStartOf="@+id/hide_job"
         app:layout_constraintHorizontal_bias="0.79"
-        app:layout_constraintStart_toEndOf="@+id/add_to_favorites"
+        app:layout_constraintStart_toEndOf="@+id/add_to_favorites_button"
         app:layout_constraintTop_toBottomOf="@+id/location" />
 
     <TextView
@@ -120,7 +119,7 @@
         android:textColor="@color/orange"
         app:layout_constraintEnd_toStartOf="@+id/hide_job"
         app:layout_constraintHorizontal_bias="0.78"
-        app:layout_constraintStart_toEndOf="@+id/add_to_favorites"
+        app:layout_constraintStart_toEndOf="@+id/add_to_favorites_button"
         app:layout_constraintTop_toBottomOf="@+id/share" />
 
     <ImageButton
@@ -148,7 +147,7 @@
         app:layout_constraintTop_toBottomOf="@+id/hide_job" />
 
     <ImageButton
-        android:id="@id/add_to_favorites"
+        android:id="@id/add_to_favorites_button"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_margin="16dp"
@@ -160,16 +159,42 @@
         app:layout_constraintTop_toBottomOf="@+id/location" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/add_to_favorites_text"
         android:layout_width="73dp"
         android:layout_height="45dp"
         android:layout_marginStart="4dp"
-        android:labelFor="@+id/add_to_favorites"
+        android:labelFor="@+id/add_to_favorites_button"
         android:text="@string/add_to_favorites"
         android:textAlignment="center"
         android:textColor="@color/orange"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/add_to_favorites" />
+        app:layout_constraintTop_toBottomOf="@+id/add_to_favorites_button" />
+
+    <ImageButton
+        android:id="@+id/remove_from_favorites_button"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_margin="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/round_button"
+        android:src="@drawable/white_favorites_icon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/location"
+        android:visibility="invisible"/>
+
+    <TextView
+        android:id="@+id/remove_from_favorites_text"
+        android:layout_width="73dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="4dp"
+        android:labelFor="@+id/remove_from_favorites_button"
+        android:text="@string/remove_from_favorites"
+        android:textAlignment="center"
+        android:textColor="@color/orange"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/remove_from_favorites_button"
+        android:visibility="invisible"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/top_container"
@@ -221,8 +246,8 @@
 
         <ImageView
             android:id="@+id/job_icon"
-            android:layout_width="101dp"
-            android:layout_height="101dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:layout_marginTop="8dp"
             app:layout_constraintBottom_toTopOf="@+id/subtitle"
             app:layout_constraintEnd_toEndOf="parent"
@@ -232,7 +257,17 @@
             app:tint="@color/white"
             tools:srcCompat="@tools:sample/avatars" />
 
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/top_triangle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/job_details_top_triangle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/top_container" />
 
     <TextView
         android:id="@id/description"
@@ -240,7 +275,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:gravity="center_horizontal"
-        android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/call_button" />
@@ -255,10 +289,3 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/description" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-    <!--<com.google.android.gms.maps.MapView-->
-<!--android:id="@+id/location"-->
-<!--android:layout_width="379dp"-->
-<!--android:layout_height="112dp"-->
-<!--app:layout_constraintEnd_toEndOf="parent"-->
-<!--app:layout_constraintStart_toStartOf="parent"-->
-<!--app:layout_constraintTop_toBottomOf="@+id/description" />-->

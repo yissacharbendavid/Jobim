@@ -1,22 +1,26 @@
 package il.co.hyperactive.myjobim
 
 import android.content.Intent
+import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.INVISIBLE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.graphics.drawable.DrawableCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import java.util.*
-
 
 private const val ARG_JOB_ID = "job_id"
 private const val TAG = "JobFragment"
@@ -34,15 +38,17 @@ class JobFragment : Fragment(){
     private lateinit var moreFromEmployerButton: ImageButton
     private lateinit var hideButton: ImageButton
     private lateinit var addToFavoritesButton: ImageButton
+    private lateinit var removeFromFavoritesButton: ImageButton
+    private lateinit var addToFavoritesText: TextView
+    private lateinit var removeFromFavoritesText: TextView
     private lateinit var iconView: ImageView
     private lateinit var topContainer: ConstraintLayout
-    private lateinit var exit_button: ImageButton
-
+    private lateinit var exitButton: ImageButton
+    private lateinit var topTriangle: ImageView
 
     private val jobDetailsViewModel: JobDetailsViewModel by lazy {
         ViewModelProviders.of(this).get(JobDetailsViewModel::class.java)
     }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -68,10 +74,14 @@ class JobFragment : Fragment(){
         shareButton = view.findViewById(R.id.share) as ImageButton
         moreFromEmployerButton = view.findViewById(R.id.more_from_employer) as ImageButton
         hideButton = view.findViewById(R.id.hide_job) as ImageButton
-        addToFavoritesButton = view.findViewById(R.id.add_to_favorites) as ImageButton
+        addToFavoritesButton = view.findViewById(R.id.add_to_favorites_button) as ImageButton
+        addToFavoritesText = view.findViewById(R.id.add_to_favorites_text)
+        removeFromFavoritesButton = view.findViewById(R.id.remove_from_favorites_button)
+        removeFromFavoritesText = view.findViewById(R.id.remove_from_favorites_text)
         iconView = view.findViewById(R.id.job_icon) as ImageView
         topContainer = view.findViewById(R.id.top_container) as ConstraintLayout
-        exit_button = view.findViewById(R.id.exit_button) as ImageButton
+        exitButton = view.findViewById(R.id.exit_button) as ImageButton
+        topTriangle = view.findViewById(R.id.top_triangle)
         val mapFragment: Fragment = MapFragment()
         val transaction: FragmentTransaction = childFragmentManager.beginTransaction()
         transaction.replace(R.id.location, mapFragment).commit()
@@ -133,13 +143,26 @@ class JobFragment : Fragment(){
             }
         }
 
-        exit_button.setOnClickListener{
+        exitButton.setOnClickListener{
             activity?.onBackPressed()
         }
 
         addToFavoritesButton.setOnClickListener{
             job.isFavorite = true
-            jobDetailsViewModel
+            addToFavoritesButton.visibility = INVISIBLE
+            addToFavoritesText.visibility = INVISIBLE
+            removeFromFavoritesButton.visibility = VISIBLE
+            removeFromFavoritesText.visibility = VISIBLE
+            jobDetailsViewModel.saveJob(job)
+        }
+
+        removeFromFavoritesButton.setOnClickListener{
+            job.isFavorite = false
+            addToFavoritesButton.visibility = VISIBLE
+            addToFavoritesText.visibility = VISIBLE
+            removeFromFavoritesButton.visibility = INVISIBLE
+            removeFromFavoritesText.visibility = INVISIBLE
+            jobDetailsViewModel.saveJob(job)
         }
 
         hideButton.setOnClickListener{
@@ -169,13 +192,23 @@ class JobFragment : Fragment(){
         (activity as AppCompatActivity?)!!.supportActionBar!!.show()
     }
 
-    fun updateUI() {
+    private fun updateUI() {
         titleView.text = getString(R.string.job_title,job.employer,job.title).replace("is looking for a", "מחפשת")
         subtitleView.text = job.subtitle
         descriptionView.text = job.description
         iconView.setImageResource(jobDetailsViewModel.getJobIcon(job.title))
         topContainer.setBackgroundResource(jobDetailsViewModel.getJobBackground(job.title))
-        exit_button.setBackgroundResource(jobDetailsViewModel.getJobBackground(job.title))
+        val unwrappedDrawable = getDrawable(requireContext(), R.drawable.job_details_top_triangle)
+        val wrappedDrawable = DrawableCompat.wrap(unwrappedDrawable!!)
+        DrawableCompat.setTint(wrappedDrawable, resources.getColor(jobDetailsViewModel.getJobBackground(job.title)))
+        topTriangle.background = wrappedDrawable
+        exitButton.setBackgroundResource(jobDetailsViewModel.getJobBackground(job.title))
+        if(job.isFavorite){
+            addToFavoritesButton.visibility = INVISIBLE
+            addToFavoritesText.visibility = INVISIBLE
+            removeFromFavoritesButton.visibility = VISIBLE
+            removeFromFavoritesText.visibility = VISIBLE
+        }
         if (job.email.isEmpty()) sendMailButton.apply {
             isEnabled = false
             setBackgroundResource(R.drawable.disabled_button)
